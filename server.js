@@ -1,7 +1,13 @@
-const fs = require("fs");
+const express = require("express");
 
-fs.writeFile(__dirname + "/test.txt", "Hello\nworld", err => {
-  err && console.log("There was an error");
+const app = express();
 
-  console.log("File was written");
+let i = 0;
+
+app.get("/", (req, res) => {
+  res.send(`Hello world ${i++}`);
+});
+
+app.listen(3000, err => {
+  err ? console.log(err) : console.log("server ready");
 });
